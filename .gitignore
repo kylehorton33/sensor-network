@@ -1,0 +1,5 @@
+# secret constants in arduino scripts
+secrets.h
+
+# conventional commits
+.vscode/
