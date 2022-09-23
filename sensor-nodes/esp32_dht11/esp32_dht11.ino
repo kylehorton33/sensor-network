@@ -37,13 +37,16 @@ DHT dht11(DHTPIN, DHT11);
 
 // initialize variables to store temperature, humidity data
 char temperature[12];
+char temperature_topic[20];
 char humidity[12];
+char humidity_topic[20];
 
 void setup() {
   Serial.begin(115200); // for console debugging
   ConnectToWiFi();
   dht11.begin(); // initialize sensor
   mqttClient.setServer(server, port); // set MQTT server
+  CreateTopics();
 }
 
 void loop() {
@@ -68,6 +71,13 @@ void ConnectToWiFi() {
   Serial.println(" SUCCESS!");
 }
 
+// combine base topic with measurement "sub-topic"
+void CreateTopics() {
+  sprintf(temperature_topic, "%s%s", mqtt_topic, "temperature");
+  sprintf(humidity_topic, "%s%s", mqtt_topic, "humidity");
+}
+
+
 // connect to mqtt broker
 void SampleDataSendMQTT() {
   if(mqttClient.connect("dht11", mqtt_user, mqtt_pass)) {
@@ -78,8 +88,8 @@ void SampleDataSendMQTT() {
     Serial.print("\tHumidity " + String(humidity) + "%");
     Serial.println("\tTemperature " + String(temperature) + "C");
 
-    mqttClient.publish(mqtt_topic + "humidity", humidity);
-    mqttClient.publish(mqtt_topic + "temperature", temperature);
+    mqttClient.publish(humidity_topic, humidity);
+    mqttClient.publish(temperature_topic, temperature);
     
   } else {
     Serial.print("[ERROR]\tMQTT ERROR: " + String(mqttClient.state()));
