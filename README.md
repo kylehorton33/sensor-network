@@ -1,2 +1,2 @@
 # sensor-network
-ESP32 Sensors, NodeRED, InfluxDB, Grafana stack for real world data monitoring
+ESP32 Sensors, MQTT, NodeRED, InfluxDB, Grafana stack for real world data monitoring
