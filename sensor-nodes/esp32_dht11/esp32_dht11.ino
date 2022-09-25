@@ -5,6 +5,8 @@
 
   created 23 Sep 2022
   by Kyle Horton
+
+  Repo: https://github.com/kylehorton33/sensor-network
 */
 
 #include "secrets.h" // store senstive data in seperate file
