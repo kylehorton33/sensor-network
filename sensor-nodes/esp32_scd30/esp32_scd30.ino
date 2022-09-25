@@ -59,7 +59,6 @@ void loop() {
     if(scd30.dataReady()) {
       SampleDataSendMQTT();
     }
-    
   }
 }
 
