@@ -39,9 +39,9 @@ DHT dht11(DHTPIN, DHT11);
 
 // initialize variables to store temperature, humidity data
 char temperature[12];
-char temperature_topic[20];
+char temperature_topic[80];
 char humidity[12];
-char humidity_topic[20];
+char humidity_topic[80];
 
 void setup() {
   Serial.begin(115200); // for console debugging
